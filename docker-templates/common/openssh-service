@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Install and expose the OpenSSH service
+
+apt-get update
+apt-get install -y openssh-server
+
+service sshd start
