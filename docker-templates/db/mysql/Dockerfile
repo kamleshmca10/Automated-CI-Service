@@ -13,6 +13,7 @@ RUN /usr/bin/create-accounts
 
 # Ensure we can manage the container
 RUN /usr/bin/openssh-service
+RUN service ssh start
 
 # Ensure mysql has a user
 ENV MYSQL_USER admin
@@ -22,11 +23,13 @@ ENV MYSQL_PASS password
 RUN apt-get install -y mysql-server
 RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
 
-ADD common/setup-mysql /usr/bin/
-RUN /usr/bin/setup-mysql
+RUN /usr/sbin/mysqld & \
+	sleep 10s && \
+	echo "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql
+CMD ["/usr/bin/mysqld_safe"]
+
+#ADD common/setup-mysql /usr/bin/
+#RUN /usr/bin/setup-mysql
 
 # Ensure mysql and ssh is acccessible
 EXPOSE 22 3306
-
-RUN service ssh start
-RUN service mysqld start
