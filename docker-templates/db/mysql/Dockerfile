@@ -22,4 +22,4 @@ RUN apt-get install -y mysql-server
 # Ensure mysql and ssh is acccessible
 EXPOSE 22 3306
 
-
+RUN service mysqld start
