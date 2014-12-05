@@ -1,0 +1,14 @@
+# file: production
+
+[local]
+
+[virtual]
+
+[datacenter]
+
+[all:children]
+local
+virtual
+datacenter
+
+

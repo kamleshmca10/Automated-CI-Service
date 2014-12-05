@@ -1,0 +1,12 @@
+# file: staging
+
+[local]
+
+[virtual]
+
+[datacenter]
+
+[all:children]
+local
+virtual
+datacenter
