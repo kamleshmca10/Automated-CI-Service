@@ -27,3 +27,5 @@ RUN install-cassandra
 
 # Ensure cassandra and ssh is acccessible
 EXPOSE 22 7000 7001 9042 9160 7199
+
+
