@@ -14,7 +14,7 @@ working as the job manager for project test cases.
 * docker - With the help of [docker.io](http://docker.io) containers we isolate and load custom testing
 environments (determined by the project githooks & configuration parameters) for the target project.
 
-* ansible - The ansible toolkit (see ansible-toolkit folder) shipped with this project allows for easy
+* ansible - Using [ansible](http://ansible.com) (see ansible-toolkit folder) shipped with this project allows for easy
 grouping & management using predefined templates for various services which helps ensure each docker
 container can be syncronized and customized for various roles etc.
 
