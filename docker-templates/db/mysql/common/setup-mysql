@@ -1,6 +1,0 @@
-#!/bin/bash
-
-mysql -u root -e "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('password');
-SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('password');
-SET PASSWORD FOR 'root'@'%' = PASSWORD('password');
-FLUSH PRIVILEGES"

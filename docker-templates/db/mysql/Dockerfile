@@ -28,8 +28,5 @@ RUN /usr/sbin/mysqld & \
 	echo "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql
 CMD ["/usr/bin/mysqld_safe"]
 
-#ADD common/setup-mysql /usr/bin/
-#RUN /usr/bin/setup-mysql
-
 # Ensure mysql and ssh is acccessible
 EXPOSE 22 3306
