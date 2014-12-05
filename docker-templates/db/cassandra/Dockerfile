@@ -5,13 +5,14 @@ MAINTAINER Jason Gerfen <jason.gerfen@utah.edu>
 RUN apt-get update && apt-get upgrade -y
 
 # Add common shell scripts
-ADD ../../common/* /usr/bin/
+ADD common/create-accounts /usr/bin/
+ADD common/openssh-service /usr/bin/
 
 # Create some user accounts
-RUN docker-user
+RUN /usr/bin/create-accounts
 
 # Ensure we can manage the container
-RUN openssh-service
+RUN /usr/bin/openssh-service
 
 # Add the Oracle Java repo
 RUN add-apt-repository -y ppa:webupd8team/java
@@ -22,8 +23,8 @@ RUN /bin/echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install oracle-java7-installer oracle-java7-set-default
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y wget dnsmasq-base python2.7 vim less iputils-ping
 
-ADD install-cassandra /usr/bin/install-cassandra
-RUN install-cassandra
+ADD common/install-cassandra /usr/bin/install-cassandra
+RUN /usr/bin/install-cassandra
 
 # Ensure cassandra and ssh is acccessible
 EXPOSE 22 7000 7001 9042 9160 7199
