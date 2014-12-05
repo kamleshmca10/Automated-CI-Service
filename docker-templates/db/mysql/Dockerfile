@@ -5,21 +5,28 @@ MAINTAINER Jason Gerfen <jason.gerfen@utah.edu>
 RUN apt-get update && apt-get upgrade -y
 
 # Add common shell scripts
-ADD ../../common/* /usr/bin/
+ADD common/create-accounts /usr/bin/
+ADD common/openssh-service /usr/bin/
 
 # Create some user accounts
-RUN docker-user
+RUN /usr/bin/create-accounts
 
 # Ensure we can manage the container
-RUN openssh-service
+RUN /usr/bin/openssh-service
 
 # Ensure mysql has a user
 ENV MYSQL_USER admin
 ENV MYSQL_PASS password
 
+# Install and configure mysql
 RUN apt-get install -y mysql-server
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+
+ADD common/setup-mysql /usr/bin/
+RUN /usr/bin/setup-mysql
 
 # Ensure mysql and ssh is acccessible
 EXPOSE 22 3306
 
+RUN service ssh start
 RUN service mysqld start
