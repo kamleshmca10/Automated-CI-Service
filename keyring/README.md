@@ -22,7 +22,7 @@ to be stored here. For example:
 ```yml
 # file: ansible-toolkit/host_vars/node-01
 - authorized_key: user=user-01
-                  key="{{ lookup('file', '../../keyring/id_rsa.pub') }}'
+                  key="{{ lookup('file', '../../keyring/id_rsa.pub') }}"
                   path='/etc/ssh/authorized_keys/user-01'
                   manage_dir=no
 ```
