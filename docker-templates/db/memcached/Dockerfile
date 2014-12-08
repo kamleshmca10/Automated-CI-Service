@@ -16,5 +16,10 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install memcached
+RUN apt-get install -y memcached
+
+# Expose SSHD & Memcached ports
+EXPOSE 22 11211
