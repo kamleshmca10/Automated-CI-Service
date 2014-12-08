@@ -16,5 +16,11 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install redis
+RUN apt-get install -y redis-server
+RUN apt-get clean
+
+# Expose SSH & Redis
+EXPOSE 22 6379
