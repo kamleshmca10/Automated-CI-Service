@@ -2,10 +2,10 @@ mariadb
 ================
 
 # Build
-To build a new mariadb container
+To build --rm a new mariadb container
 
 ```sh
-%> docker build -t mariadb .
+%> docker build --rm -t mariadb .
 ```
 
 # Run

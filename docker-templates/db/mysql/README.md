@@ -2,10 +2,10 @@ mysql
 ====================
 
 # Build
-To build a new mysql container
+To build --rm a new mysql container
 
 ```sh
-%> docker build -t mysql .
+%> docker build --rm -t mysql .
 ```
 
 # Run
