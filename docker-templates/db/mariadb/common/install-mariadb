@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# Setup apt repositories & install mariadb
+
+apt-get install -y software-properties-common
+apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+
+echo 'deb http://mirror.pw/mariadb/repo/10.0/ubuntu trusty main
+deb-src http://mirror.pw/mariadb/repo/10.0/ubuntu trusty main' > /etc/apt/sources.list.d/mariadb.list
+
+apt-get update
+apt-get install -y mariadb-server
+apt-get clean
+
+service mysql stop
+#sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/my.cnf
+
+#/usr/sbin/mysqld && \
+#	sleep 10s && \
+#	echo "GRANT ALL ON *.* TO admin@'%' IDENTIFIED BY 'password' WITH GRANT OPTION; FLUSH PRIVILEGES" | mysql
+
+#exec mysqld_safe &
