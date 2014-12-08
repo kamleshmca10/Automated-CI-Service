@@ -23,13 +23,8 @@ RUN apt-get install -y curl busybox openjdk-7-jre-headless java-common libjna-ja
 RUN apt-get clean
 
 # Install cassandra
-ADD common/install-cassandra /usr/bin
+ADD common/install-cassandra /usr/bin/
 RUN /usr/bin/install-cassandra
-
-# Create new cassandra user & permissions
-RUN groupadd -g 499 cassandra && \
-    useradd -u 499 -g cassandra -s /bin/bash -d /data cassandra && \
-    chown -R cassandra:cassandra /data
 
 # Expose 22 & cassandra ports
 EXPOSE 22 7000 7199 9042 9160 61621
