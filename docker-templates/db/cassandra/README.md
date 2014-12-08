@@ -2,7 +2,7 @@ cassandra
 ====================
 
 # Build
-To build --rm a new cassandra container
+To build a new cassandra container
 
 ```sh
 %> docker build --rm -t cassandra .

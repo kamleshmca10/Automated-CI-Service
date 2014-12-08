@@ -2,7 +2,7 @@ memcached
 ================
 
 # Build
-To build --rm a new memcached container
+To build a new memcached container
 
 ```sh
 %> docker build --rm -t memcached .
