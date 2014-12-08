@@ -16,14 +16,20 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/*.pub /etc/ssh/keyring
-ADD common/keys/known_hosts /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
-# Install dependencies for cassandra
-RUN apt-get -y curl busybox openjdk-7-jre-headless java-common libjna-java-python
+# Get dependencies
+RUN apt-get install -y curl busybox openjdk-7-jre-headless java-common libjna-java python
 RUN apt-get clean
 
-# Copy over our cassandra installer
-ADD common/install-cassandra /usr/bin/
+# Install cassandra
+ADD common/install-cassandra /usr/bin
 RUN /usr/bin/install-cassandra
 
+# Create new cassandra user & permissions
+RUN groupadd -g 499 cassandra && \
+    useradd -u 499 -g cassandra -s /bin/bash -d /data cassandra && \
+    chown -R cassandra:cassandra /data
+
+# Expose 22 & cassandra ports
+EXPOSE 22 7000 7199 9042 9160 61621

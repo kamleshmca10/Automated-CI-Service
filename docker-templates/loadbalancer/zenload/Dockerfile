@@ -16,6 +16,5 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/*.pub /etc/ssh/keyring
-ADD common/keys/known_hosts /etc/ssh/keyring
+ADD common/keys/* /etc/ssh/keyring
 
