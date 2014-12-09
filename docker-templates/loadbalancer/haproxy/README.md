@@ -1,6 +1,11 @@
 haproxy
 ================
 
+# Configure
+On each build the `config/haproxy.cfg` file 
+is copied to the new container. Any customization
+should be defined there prior to container build.
+
 # Build
 To build a new haproxy container
 
