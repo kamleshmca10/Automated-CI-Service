@@ -16,5 +16,8 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install squid
+RUN apt-get install -y squid
+RUN apt-get clean
