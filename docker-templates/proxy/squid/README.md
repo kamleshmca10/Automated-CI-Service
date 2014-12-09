@@ -25,4 +25,5 @@ This docker container exposes the following TCP/UDP ports
 
 TCP
 * 22
-* 3306
+* 80
+* 443
