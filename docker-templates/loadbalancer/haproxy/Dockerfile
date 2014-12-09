@@ -23,16 +23,16 @@ RUN apt-get install -y haproxy
 RUN apt-get clean
 
 # stop haproxy
-#RUN service haproxy stop
+RUN service haproxy stop
 
 # Enable haproxy
-#RUN sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/haproxy
+RUN sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/haproxy
 
 # Copy over th HAProxy configuration
-#ADD config/haproxy.cfg /etc/haproxy/haproxy.cfg
+ADD config/haproxy.cfg /etc/haproxy/haproxy.cfg
 
 # Start it back up
-#RUN service haproxy start
+RUN service haproxy start
 
 # Expose SSH, HTTP & HTTPS
 EXPOSE 22 80 443
