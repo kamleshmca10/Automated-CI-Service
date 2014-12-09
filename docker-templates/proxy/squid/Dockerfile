@@ -21,3 +21,15 @@ ADD common/keys/ /etc/ssh/keyring
 # Install squid
 RUN apt-get install -y squid
 RUN apt-get clean
+
+# Stop squid if it is running
+#RUN killall squid3
+
+# Add custom configuration file(s)
+ADD config/ /etc/squid3/
+
+# Startup squid
+RUN echo "/usr/sbin/squid3" > /etc/rc.local
+
+# Expose 22 80 & 443
+EXPOSE 22 80 443
