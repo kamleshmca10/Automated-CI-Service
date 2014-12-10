@@ -16,9 +16,16 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install latest tomcat
+RUN apt-get install -y tomcat7
+RUN apt-get clean
 
 # Post configuration script
 ADD common/custom-commands /usr/bin/
 RUN /usr/bin/custom-commands
+
+# Expose ssh & tomcat
+EXPOSE 22 8080 8443
+
