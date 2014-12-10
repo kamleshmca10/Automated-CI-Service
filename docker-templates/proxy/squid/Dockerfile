@@ -33,3 +33,7 @@ RUN echo "/usr/sbin/squid3" > /etc/rc.local
 
 # Expose 22 80 & 443
 EXPOSE 22 80 443
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

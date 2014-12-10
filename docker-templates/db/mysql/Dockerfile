@@ -30,3 +30,7 @@ CMD ["/usr/bin/mysqld_safe"]
 
 # Ensure mysql and ssh is acccessible
 EXPOSE 22 3306
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

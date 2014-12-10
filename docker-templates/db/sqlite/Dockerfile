@@ -24,3 +24,7 @@ RUN apt-get clean
 
 # Expose SSH
 EXPOSE 22
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

@@ -28,3 +28,7 @@ RUN /usr/bin/install-cassandra
 
 # Expose 22 & cassandra ports
 EXPOSE 22 7000 7199 9042 9160 61621
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

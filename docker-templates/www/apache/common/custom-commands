@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# custom-commands
+# Enter any custom commands
+# for the docker container
+# to run on build or run.
+
+

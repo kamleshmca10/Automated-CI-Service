@@ -3,10 +3,10 @@ common
 
 This folder comtains any useful tools which 
 can be used for each of the various docker
-builds.
+build --rm --rms.
 
 Create new tools here and popogate to each
-docker build instance
+docker build --rm --rm instance
 
 ```sh
 %> cd ../ && ./populate-common

@@ -36,3 +36,7 @@ RUN service haproxy start
 
 # Expose SSH, HTTP & HTTPS
 EXPOSE 22 80 443
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

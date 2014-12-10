@@ -23,3 +23,7 @@ RUN apt-get install -y memcached
 
 # Expose SSHD & Memcached ports
 EXPOSE 22 11211
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

@@ -37,3 +37,7 @@ CMD ["/usr/bin/mysqld_safe", "&"]
 
 # Ensure mariadb & ssh is accessible
 EXPOSE 22 3306
+
+# Post configuration script 
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

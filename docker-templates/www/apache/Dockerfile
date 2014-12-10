@@ -16,5 +16,25 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install apache
+RUN apt-get install -y apache2
+RUN apt-get clean
+
+# Stop apache & load configuration
+RUN service apache2 stop
+ADD config/ /etc/apache2/
+
+# Setup all server languages
+RUN apt-get install -y php5 php5-cgi libapache2-mod-php5 libapache2-mod-perl2
+
+# Startup apache
+RUN service apache2 start
+
+# Expose ssh, http & httpd
+EXPOSE 22 80 443
+
+# Post configuration script
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands
