@@ -16,8 +16,13 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install some tools
+RUN apt-get install -y curl gcc g++ make
+RUN curl http://nodejs.org/dist/v0.10.33/node-v0.10.33.tar.gz | tar zx
+WORKDIR node-v0.10.33/
+RUN ./configure && make install
 
 # Post configuration script
 ADD common/custom-commands /usr/bin/
