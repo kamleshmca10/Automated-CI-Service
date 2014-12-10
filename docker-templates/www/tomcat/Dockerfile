@@ -18,3 +18,7 @@ RUN service ssh start
 # Copy over any keys
 ADD common/keys/* /etc/ssh/keyring
 
+
+# Post configuration script
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands

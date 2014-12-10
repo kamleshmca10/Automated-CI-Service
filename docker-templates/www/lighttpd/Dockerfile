@@ -16,5 +16,21 @@ RUN /usr/bin/openssh-service
 RUN service ssh start
 
 # Copy over any keys
-ADD common/keys/* /etc/ssh/keyring
+ADD common/keys/ /etc/ssh/keyring
 
+# Install lighttpd
+RUN apt-get install -y lighttpd
+RUN apt-get clean
+
+# Stop service, copy configuration & install languages
+RUN /etc/init.d/lighttpd stop
+ADD config/ /etc/lighttpd/
+RUN apt-get install -y php5 php5-cgi php5-fpm
+RUN sed -i 's/\#cgi.fix_pathinfo/cgi.fix_pathinfo/g' /etc/php5/fpm/php.ini
+
+# Start it back up
+RUN /etc/init.d/lighttpd start
+
+# Post configuration script
+ADD common/custom-commands /usr/bin/
+RUN /usr/bin/custom-commands
